@@ -18,10 +18,13 @@ fun rememberEyeDropperHandler(): () -> Unit {
     val resultContract = rememberLauncherForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.resultCode == Activity.RESULT_OK && result.data?.hasExtra("android.intent.extra.COLOR") == true) {
-            val color = result.data?.getIntExtra("android.intent.extra.COLOR", Color.BLACK) ?: Color.BLACK
-            val hex = String.format(Locale.US, "#%06X", 0xFFFFFF and color)
-            Toast.makeText(context, hex, Toast.LENGTH_SHORT).show()
+        when {
+            result.resultCode == Activity.RESULT_OK && result.data?.hasExtra("android.intent.extra.COLOR") == true -> {
+                val color = result.data?.getIntExtra("android.intent.extra.COLOR", Color.BLACK) ?: Color.BLACK
+                val hex = String.format(Locale.US, "#%06X", 0xFFFFFF and color)
+                Toast.makeText(context, hex, Toast.LENGTH_SHORT).show()
+            }
+            else -> Toast.makeText(context, "Cancelled", Toast.LENGTH_SHORT).show()
         }
     }
     return remember(resultContract, intent) { { resultContract.launch(intent) } }
