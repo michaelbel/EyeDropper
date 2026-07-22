@@ -66,6 +66,7 @@ private fun HomeScreen(
                 SegmentedListItem(
                     onClick = onOpenSample01,
                     shapes = ListItemDefaults.segmentedShapes(index = 0, count = 2),
+                    overlineContent = { Text(text = "Sample 01") },
                     supportingContent = { Text(text = "Pick a color from anywhere on the screen") },
                     colors = ListItemDefaults.segmentedColors(
                         containerColor = MaterialTheme.colorScheme.surfaceContainerHighest
@@ -77,6 +78,7 @@ private fun HomeScreen(
                 SegmentedListItem(
                     onClick = onOpenSample02,
                     shapes = ListItemDefaults.segmentedShapes(index = 1, count = 2),
+                    overlineContent = { Text(text = "Sample 02") },
                     supportingContent = { Text(text = "See how protected content is picked as black") },
                     colors = ListItemDefaults.segmentedColors(
                         containerColor = MaterialTheme.colorScheme.surfaceContainerHighest
